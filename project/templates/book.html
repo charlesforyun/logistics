@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是一个渲染的模版</title>
+</head>
+<body>
+<img src="/static/dengping.jpg" alt="">
+    这是一个渲染的模版
+    {{ username.zhiliao }}
+    {{ game.name }}
+    {% if age < 18 %}
+        <p>您是未成年人，不可以进入网吧</p>
+    {% elif age == 18 %}
+        <p>您满18岁，可以进入网吧</p>
+    {% else %}
+        <p>您已经是成年人了，需要承担起家庭责任，不可以进入而网吧</p>
+    {% endif %}
+
+    <ul>
+        {% for book in books reversed %}
+            <li>{{ book }}</li>
+        {% endfor %}
+
+    </ul>
+    <p>
+        {% for key,value in person.items %}
+            <li>{{ key }}/{{ value }}</li>
+        {% endfor %}
+
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>书名</td>
+                <td>作者</td>
+                <td>价格</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% with  booklove as bookloves %}
+            {% for book in bookloves %}
+                {% if forloop.first %}
+                    <tr style="background: aqua;">
+                {% elif forloop.last %}
+                    <tr style="background: aquamarine;">
+                {% else %}
+                    <tr>
+                {% endif %}
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ book.书名 }}</td>
+                    <td>{{ book.作者 }}</td>
+                    <td>{{ book.价格 }}</td>
+            {% endfor %}
+            {% endwith %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>urllabel</title>
+    <style>
+        .nav{
+            overflow: hidden;
+        }
+        .nav li{
+            float: left;
+            list-style: none;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li><a href="/book">首页</a></li>
+        <li><a href="{% url 'book:read' %}?name=/">读书</a></li>
+        <li><a href="{% url 'book:movie' dog=1 %}">电影</a></li>
+        <li><a href="{% url 'book:city' %}?name=/">同城</a></li>
+    </ul>
+</body>
+</html>

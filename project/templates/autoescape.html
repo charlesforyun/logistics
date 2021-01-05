@@ -1,0 +1,31 @@
+{% load my_filter %}
+{% load filter_time %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="{% static 'dengping.jpg' %}" alt="">
+<ul>
+    {{ datatime|time_since }}
+    {{ file|ge:"dengping" }}
+    {{ info|safe }}
+    {% autoescape off %}
+        {{ info }}
+    {% endautoescape %}
+    {% verbatim %}
+    {{ info }}
+    {% endverbatim %}
+
+    {{ "1"|add:"2" }}
+
+    {{ birthday|date:"d-m-Y" }}
+
+    {{ "hallo world"|cut:"w" }}
+    {{ info|default:"is nothing" }}
+</ul>
+
+</body>
+</html>
