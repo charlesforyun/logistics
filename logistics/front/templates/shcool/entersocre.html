@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩录入</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script>
+        $(function () {
+            $("#submit").click(function (event) {
+                event.preventDefault();
+                var telephone = $("input[name='telephone']").val();
+                var username = $("input[name='username']").val();
+                var email = $("input[name='email']").val();
+                var password = $("input[name='password']").val();
+                var password_repeat = $("input[name='password_repeat']").val();
+
+                myajax.post({
+                    'url': '/school/',
+                    'data': {
+                    },
+                    'success': function (data) {
+                        console.log(data);
+                    },
+                    'fail': function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="#" method="post">
+    {% csrf_token %}
+    <table>
+        <tbody>
+        <tr>
+            <td><input type="submit" id="submit"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>

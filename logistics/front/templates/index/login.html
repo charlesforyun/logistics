@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎来到登陆界面</title>
+    <link rel="stylesheet" href="{% static 'css/common/login.css' %}">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script>
+        $(function () {
+            $("#submit").click(function (event) {
+                event.preventDefault();
+                var telephone = $("input[name='telephone']").val();
+                var password = $("input[name='password']").val();
+                var remember = $("input[name='remember']").prop("checked");
+
+                myajax.post({
+                    'url': '/logistics/login/',
+                    'data': {
+                        'telephone': telephone,
+                        'password': password,
+                        'remember': remember?1:0,
+                    },
+                    'success': function (data) {
+                        console.log(data);
+                    },
+                    'fail': function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td>电话:</td>
+                <td><input type="text" name="telephone"></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td>下次自动登录:</td>
+                <td><input type="checkbox" name="remember" value="1"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" id="submit"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
